@@ -9,7 +9,7 @@ function App() {
   //activePlayer será 1 o 2
   const [activePlayer, setActivePlayer] = useState(1);
   const [dice, setDice] = useState(0);
-  const PUNTUACION_MAXIMA = 20;
+  const PUNTUACION_MAXIMA = 100;
 
   const iniciar = () => {
     setScore1(0);
@@ -31,13 +31,14 @@ function App() {
   };
 
   const mantener = () => {
+    if (Math.max(score1, score2) + current < PUNTUACION_MAXIMA)
+      setActivePlayer(activePlayer === 1 ? 2 : 1);
     if (activePlayer === 1) {
-      setScore1(score1 + current);
+      setScore1((score1) => score1 + current);
     } else {
-      setScore2(score2 + current);
+      setScore2((score2) => score2 + current);
     }
     setCurrent(0);
-    setActivePlayer(activePlayer === 1 ? 2 : 1);
   };
 
   return (
@@ -47,12 +48,14 @@ function App() {
         score={score1}
         current={activePlayer === 1 ? current : 0}
         active={activePlayer === 1}
+        max={PUNTUACION_MAXIMA}
       />
       <Player
         titulo={score2 > PUNTUACION_MAXIMA ? "WINNER" : "Jugador 2"}
         score={score2}
         current={activePlayer === 2 ? current : 0}
         active={activePlayer === 2}
+        max={PUNTUACION_MAXIMA}
       />
       {dice !== 0 && (
         <img src={`dice-${dice}.png`} alt="Playing dice" className="dice" />

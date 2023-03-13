@@ -1,7 +1,11 @@
 import "./Player.css";
-export default function Player({ titulo, score, current, active }) {
+export default function Player({ titulo, score, current, active, max }) {
+  const classCSS = ["player"];
+  if (active) classCSS.push("player--active");
+  if (score > max) classCSS.push("player--winner");
+
   return (
-    <section className={active ? "player player--active" : "player"}>
+    <section className={classCSS.join(" ")}>
       <h2 className="name">{titulo}</h2>
       <p className="score">{score}</p>
       <div className="current">
