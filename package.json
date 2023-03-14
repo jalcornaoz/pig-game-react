@@ -11,11 +11,13 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
+  "homepage": "https://alberto.certweb.infenlaces.com/pig-dice-react",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "scp -P 22123 -r build/* alberto@alberto.certweb.infenlaces.com:/home/alberto/albertoproxyphpmysql_v4/sitioweb/pig-dice-react"
   },
   "eslintConfig": {
     "extends": [
